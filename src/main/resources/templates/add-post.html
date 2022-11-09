@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Reddit - add new post</title>
+</head>
+<body>
+<h1 th:text="'Submit new post'"></h1>
+<section>
+    <form th:action="@{/add-new-post}"
+          th:method="post"
+          th:object="${post}"
+    >
+        <label for="title" th:text="'Title:'"></label>
+        <input id="title"
+               type="text"
+               required
+               th:field="*{title}"
+               th:value="title"
+        >
+
+        <label for="url" th:text="'URL:'"></label>
+        <input id="url"
+               type="text"
+               required
+               th:field="*{url}"
+               th:value="url"
+        >
+
+        <button type="submit">Submit</button>
+    </form>
+</section>
+</body>
+</html>

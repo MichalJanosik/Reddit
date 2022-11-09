@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reddit</title>
+</head>
+<body>
+<nav>
+    <a th:href="@{/add-new-post}">Submit new post</a>
+</nav>
+<section>
+    <h1 th:text="'Trending posts'"></h1>
+    <table>
+        <a th:if="${pageNumber > 0}" th:href="@{/(pageNumber=${pageNumber - 1})}">Previous</a>
+        <a th:if="${pageNumber + 1 < posts.totalPages}" th:href="@{/(pageNumber=${pageNumber + 1})}">Next</a>
+        <tr th:each="post : ${posts}" th:object="${post}">
+            <td th:text="*{voting}"></td>
+            <td><a th:href="@{/vote-positive(id=${post.id})}">+</a></td>
+            <td><a th:href="@{/vote-negative(id=${post.id})}">-</a></td>
+            <td><a th:href="*{url}" th:text="*{getTitle}" target="_blank"></a></td>
+            <td th:text="${#dates.format(post.dateCreated, 'dd-MM-yyy HH:mm:SS')}"></td>
+        </tr>
+    </table>
+</section>
+</body>
+</html>

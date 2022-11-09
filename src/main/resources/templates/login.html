@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reddit :: login</title>
+</head>
+<body>
+    <h1  th:text="${message}"></h1>
+    <h2>Enter your username and password:</h2>
+    <form th:action="@{/users/login}" th:method="POST">
+        <label for="username">Username</label>
+        <input id="username" type="text" name="username"/>
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password"/>
+        <button type="submit">Login</button>
+        <a th:href="@{/users/register}" th:text="'Register'"></a>
+    </form>
+</body>
+</html>
